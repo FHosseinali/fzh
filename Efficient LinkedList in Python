@@ -1,0 +1,32 @@
+class Linkedlist:
+    def __init__(self):
+        self.outer = None
+    
+    def add_outermost(self, dt):
+        self.outer = [dt, self.outer]
+    
+    def add_innermost(self, dt):
+        p = self.outer
+        if not p:
+            self.outer = [dt, None]
+            return
+        while p[1]:
+            p = p[1]
+        p[1] = [dt, None]
+        
+    def visualize(self):
+        p = self.outer
+        l = 'Linkedlist: '
+        while p:
+            l += (str(p[0])+'->')
+            p = p[1]
+        print(l + 'None')
+            
+ll = Linkedlist()
+ll.add_innermost(8)
+ll.add_outermost(3)
+ll.add_outermost(5)
+ll.add_outermost(2)
+ll.add_innermost(7)
+print(ll.outer)
+ll.visualize()
